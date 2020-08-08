@@ -83,7 +83,7 @@ namespace LearnLinq
 
             SeparatingLine("Group by composite key");
 
-            var groupByCompositeKey = people.OrderBy(p => p.FirstName).GroupBy(p => new { p.Age, p.Gender});
+            var groupByCompositeKey = people.OrderBy(p => p.FirstName).GroupBy(p => new { p.Age, p.Gender}).OrderBy(group => group.Key.Age);
 
             foreach (var group in groupByCompositeKey)
             {
