@@ -6,7 +6,7 @@ namespace LearnLinq
 {
     class Order
     {
-        static void Main (string[] args)
+        static void MyMain (string[] args)
         {
             List<Person> people = new List<Person>()
             {
