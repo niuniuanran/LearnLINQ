@@ -30,7 +30,7 @@ namespace LearnLinq
             };
 
 
-            SeparatingLine("Join buyers and suppliers by their district");
+            SeparatingLine("Inner Join buyers and suppliers by their district");
 
             var innerJoin = from s in suppliers
                             orderby s.District
@@ -47,7 +47,7 @@ namespace LearnLinq
                 Console.WriteLine($"{districtMath}");
             }
 
-            SeparatingLine("Join by composite keys district and age");
+            SeparatingLine("Inner Join by composite keys district and age");
 
             var compositeJoin = from s in suppliers
                                 join b in buyers on new { s.District, s.Age } equals new { b.District, b.Age }
@@ -64,6 +64,25 @@ namespace LearnLinq
             }
 
 
+            SeparatingLine("Group Join, give each supplier a collection of its buyers."); 
+
+            var groupJoin = from s in suppliers
+                            join b in buyers on s.District equals b.District into buyerGroup
+                            select new
+                            {
+                                s.Name,
+                                s.District,
+                                Buyers = buyerGroup
+                            };
+
+            foreach (var supplierWithBuyerGroup in groupJoin)
+            {
+                Console.WriteLine($"Supplier: {supplierWithBuyerGroup.Name} in District {supplierWithBuyerGroup.District}");
+                foreach (var buyer in supplierWithBuyerGroup.Buyers)
+                {
+                    Console.WriteLine($"   Buyer: {buyer.Name} ");
+                }
+            }
         }
 
         private static void SeparatingLine(string explaination)
