@@ -35,6 +35,16 @@ namespace FilterConvertOrder
                 Console.WriteLine(item.GetType().ToString());
 
 
+            SeparatingLine("Use query syntax to filter and convert type");
+
+            var youngBuyers = from p in people
+                              where p is Buyer
+                              let b = p as Buyer
+                              where b.Age < 25
+                              select b;
+            foreach (var item in youngBuyers)
+                Console.WriteLine($"Buyer {item.ID} aged {item.Age} ");
+
         }
 
 
