@@ -87,7 +87,7 @@ namespace LearnLinq
             }
 
             SeparatingLine();
-            Console.WriteLine("1: Group then Order groups");
+            Console.WriteLine("1: Group then Order groups, will be rewritten by into keyword"); 
 
             var orderedKeys = from key in (from p in people group p by p.FirstName[0]) 
                               orderby key.Count()
@@ -101,25 +101,9 @@ namespace LearnLinq
                 }
             }
 
-            SeparatingLine();
-            Console.WriteLine("Extend a Group Query with into Keyword");
-
-            var peopleByAge = from p in people
-                              group p by p.Age into peopleAgeGroup
-                              orderby peopleAgeGroup.Key  // order the groups by key (age)
-                              select peopleAgeGroup;
-
-            foreach (var key in peopleByAge)
-            {
-                Console.WriteLine($"--Age {key.Key} -- {key.Count()} people in the group--");
-                foreach (var p in key.OrderBy(p => p.Age))
-                {
-                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
-                }
-            }
 
             SeparatingLine();
-            Console.WriteLine("Redo alphabetic grouping in 1");
+            Console.WriteLine("Redo alphabetic grouping in 1 with into keyword");
 
             var newOrderedByCountKeys = from p in people
                                         group p by p.FirstName[0] into groupByFirstLetter
