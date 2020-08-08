@@ -23,6 +23,10 @@ namespace LearnLinq
 
             var rdm = new Random();
             var randomNumbers = Enumerable.Range(1, 10).Select(_ => rdm.Next(1, 100));
+            Console.WriteLine(string.Join(" ", randomNumbers));
+
+            var alphabet = Enumerable.Range(0, 26).Select(c => (char)(c + 'a'));
+            Console.WriteLine(string.Join(" ", alphabet));
 
         }
     }
