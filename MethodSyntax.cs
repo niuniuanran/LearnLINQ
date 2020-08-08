@@ -24,13 +24,11 @@ namespace LearnLinq
             shortWarriors.ForEach(w => Console.WriteLine(w.Height));
 
 
-            SeparatingLine("");
-
             List<Person> people = new List<Person>()
             {
                 new Person("Tod", "Vachev", 1, 180, 26, Gender.Male),
                 new Person("John", "Johnson", 2, 170, 21, Gender.Male),
-                new Person("Anna", "Maria", 3, 150, 22, Gender.Female),
+                new Person("Anna", "Maria", 3, 150, 21, Gender.Female),
                 new Person("Kyle", "Wilson", 4, 164, 29, Gender.Male),
                 new Person("Anna", "Williams", 5, 164, 28, Gender.Male),
                 new Person("Maria", "Ann", 6, 160, 43, Gender.Female),
@@ -52,10 +50,48 @@ namespace LearnLinq
             foreach (var group in genderGrouping)
             {
                 Console.WriteLine(group.Key);
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+                }
             }
+
+            SeparatingLine("Exactly the same...");
+
             foreach(var group in genderGrouping2)
             {
                 Console.WriteLine(group.Key);
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+                }
+            }
+
+            SeparatingLine("Order items, group, order group");
+
+            var orderedAgeGrouping = people.OrderBy(p=>p.FirstName).GroupBy(p => p.Age).OrderBy(g => g.Key);
+
+            foreach (var group in orderedAgeGrouping)
+            {
+                Console.WriteLine(group.Key);
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+                }
+            }
+
+
+            SeparatingLine("Group by composite key");
+
+            var groupByCompositeKey = people.OrderBy(p => p.FirstName).GroupBy(p => new { p.Age, p.Gender});
+
+            foreach (var group in groupByCompositeKey)
+            {
+                Console.WriteLine(group.Key);
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+                }
             }
 
         }
