@@ -78,7 +78,7 @@ namespace LearnLinq
                 Console.WriteLine($"{match.District}, Supplier {match.Name}, Buyer {match.BuyerName}");
             }
 
-            SeparatingLine("Left Outer join - type specific");
+            SeparatingLine("Left Outer join, grouped and type specific");
 
             var outerJoinWithBuyerType = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g.DefaultIfEmpty(new Buyer { Name = "No One" }) });
             foreach (var supplier in outerJoinWithBuyerType)
@@ -87,6 +87,19 @@ namespace LearnLinq
                 foreach (var buyer in supplier.Buyers)
                     Console.WriteLine($"   Buyer: {buyer.Name}");
             }
+
+            SeparatingLine("Left Outer join, flattened and type specific");
+
+            var outerJoinFlattendBuyerType = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g.DefaultIfEmpty(new Buyer { Name = "No one", District = "No where" }) })
+                .SelectMany(s => s.Buyers, (s, b) => new { Supplier = s, Buyer = b });
+
+            foreach (var match in outerJoinFlattendBuyerType)
+            {
+                Console.WriteLine($"{match.Supplier.District}, Supplier {match.Supplier.Name}");
+                Console.WriteLine($"   Buyer: {match.Buyer.Name} in {match.Buyer.District}");
+            }
+
+
         }
 
         private static void SeparatingLine(string exp)
@@ -94,6 +107,8 @@ namespace LearnLinq
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(exp);
         }
+
+
 
 
 
