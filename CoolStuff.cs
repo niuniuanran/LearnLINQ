@@ -21,7 +21,8 @@ namespace LearnLinq
             var evenNumbers = Enumerable.Range(1, 10).Where(n => n % 2 == 0);
             Console.WriteLine(string.Join(" ", evenNumbers));
 
-
+            var rdm = new Random();
+            var randomNumbers = Enumerable.Range(1, 10).Select(_ => rdm.Next(1, 100));
 
         }
     }
