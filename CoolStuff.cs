@@ -11,7 +11,11 @@ namespace LearnLinq
         static void Main (string[] args)
         {
             var manyAs = Enumerable.Repeat("A", 30);
-            Console.WriteLine(String.Join("", manyAs));
+            Console.WriteLine(string.Join("", manyAs));
+
+
+            var numbers = Enumerable.Range(3, 10);
+            Console.WriteLine(string.Join(" ", numbers));
         }
     }
 }
