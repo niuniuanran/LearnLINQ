@@ -65,6 +65,17 @@ namespace LearnLinq
                     Console.WriteLine($"   Buyer: {buyer.Name}");
             }
 
+            SeparatingLine("Left Outer join");
+
+            var outerJoinByDistrict = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g })
+                .SelectMany(s => s.Buyers.DefaultIfEmpty(), (s, b) => new { s.Name, s.District, BuyerName = b?.Name ?? "No One"});
+
+            foreach (var match in outerJoinByDistrict)
+            {
+                Console.WriteLine($"{match.District}, Supplier {match.Name}, Buyer {match.BuyerName}");
+            }
+
+
 
 
         }
