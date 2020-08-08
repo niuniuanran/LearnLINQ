@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace FilterConvertOrder
 {
-    class FilterConvertOrder
+    class FilterConvert
     {
-        static void Main(string[] args)
+        static void MyMain(string[] args)
         {
 
             SeparatingLine("OfType filter");
@@ -74,8 +74,8 @@ namespace FilterConvertOrder
                                              Age = b.Age
                                          };
 
-
-
+            SeparatingLine("Order by two criterias");
+           
 
         }
 
