@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace LearnLinq
+using LearnLinq;
+namespace IntroAndGroup
 {
-    class LearnLinq
+    class IntroAndGroup
+
     {
         private static void SeparatingLine()
         {
