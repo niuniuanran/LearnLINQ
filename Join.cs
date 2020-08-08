@@ -85,6 +85,34 @@ namespace LearnLinq
                     Console.WriteLine($"   Buyer: {buyer.Name} Age: {buyer.Age}");
                 }
             }
+
+
+            SeparatingLine("Left outer join. If there is an item with no match, left outer join will assign a default value to it");
+
+            var leftOuterJoin = from s in suppliers
+                                join b in buyers on s.District equals b.District into buyerGroup
+                                select new
+                                {
+                                    s.Name,
+                                    s.District,
+                                    Buyers = buyerGroup.DefaultIfEmpty(new Buyer() 
+                                                                            { Name = "No one",
+                                                                              District = "Nowhere" })
+                                };
+
+            foreach (var supplierWithBuyerGroup in leftOuterJoin)
+            {
+                Console.WriteLine($"Supplier: {supplierWithBuyerGroup.Name} in District {supplierWithBuyerGroup.District}");
+                foreach (var buyer in supplierWithBuyerGroup.Buyers)
+                {
+                    Console.WriteLine($"   Buyer: {buyer.Name} {buyer.District}");
+                }
+            }
+
+
+
+
+
         }
 
         private static void SeparatingLine(string explaination)
