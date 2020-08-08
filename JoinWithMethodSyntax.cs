@@ -36,7 +36,22 @@ namespace LearnLinq
             {
                 Console.WriteLine($"{match.District}: Supplier {match.SupplierName}, Buyer {match.BuyerName}");
             }
-            
+
+            SeparatingLine("Composite Inner Join");
+
+            var compositeInnerJoin = suppliers.Join(buyers, s => new { s.District, s.Age }, b => new { b.District, b.Age }, (s, b) => new { s.District, s.Age, SupplierName = s.Name, BuyerName = b.Name, });
+            foreach (var match in compositeInnerJoin)
+            {
+                Console.WriteLine($"{match.District}, Aged {match.Age}: Supplier {match.SupplierName}, Buyer {match.BuyerName}");
+            }
+
+
+        }
+
+        private static void SeparatingLine(string exp)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine(exp);
         }
 
 
