@@ -33,6 +33,7 @@ namespace LearnLinq
             SeparatingLine("Join buyers and suppliers by their district");
 
             var innerJoin = from s in suppliers
+                            orderby s.District
                             join b in buyers on s.District equals b.District
                             select new
                             {
@@ -44,6 +45,22 @@ namespace LearnLinq
             foreach (var districtMath in innerJoin)
             {
                 Console.WriteLine($"{districtMath}");
+            }
+
+            SeparatingLine("Join by composite keys district and age");
+
+            var compositeJoin = from s in suppliers
+                                join b in buyers on new { s.District, s.Age } equals new { b.District, b.Age }
+                                select new
+                                {
+                                    SupplierName = s.Name,
+                                    BuyerName = b.Name,
+                                    b.District,
+                                    b.Age
+                                };
+            foreach (var districtAgeMatch in compositeJoin)
+            {
+                Console.WriteLine($"{districtAgeMatch}");
             }
 
 
