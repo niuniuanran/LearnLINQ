@@ -101,7 +101,22 @@ namespace LearnLinq
                 }
             }
 
+            SeparatingLine();
+            Console.WriteLine("Extend a Group Query with into Keyword");
 
+            var peopleByAge = from p in people
+                              group p by p.Age into peopleAgeGroup
+                              orderby peopleAgeGroup.Key  // order the groups by key (age)
+                              select peopleAgeGroup;
+
+            foreach (var key in peopleByAge)
+            {
+                Console.WriteLine($"--Age {key.Key} -- {key.Count()} people in the group--");
+                foreach (var p in key.OrderBy(p => p.Age))
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
+                }
+            }
 
 
         }
