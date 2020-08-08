@@ -142,6 +142,16 @@ namespace LearnLinq
             }
 
 
+            SeparatingLine();
+            Console.WriteLine("Summarize group member number");
+
+            var howManyPeopleInEachGroup = from p in people
+                                           group p by p.Gender into g
+                                           select new { Gender = g.Key, GroupSize = g.Count() };
+            foreach (var groupSum in howManyPeopleInEachGroup)
+            {
+                Console.WriteLine(groupSum);
+            }
 
 
 
