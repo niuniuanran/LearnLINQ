@@ -114,18 +114,22 @@ namespace LearnLinq
 
             var leftOuterJoinWithAnonymous = from s in suppliers
                                              join b in buyers on s.District equals b.District into buyersGroup
-                                             from bG in buyersGroup.DefaultIfEmpty() // If argument is empty, return the parameter type's default value, here is null
+                                              // If argument is empty, return the parameter type's default value, here is null
                                              select new
                                              {
                                                  s.Name,
                                                  s.District,
-                                                 BuyerName = bG?.Name ?? "No One"  // ?. is null-conditional operator and ?? is null-coalesce operator
+                                                 Buyers = from bG in buyersGroup.DefaultIfEmpty() 
+                                                          select new { BuyerName = bG?.Name ?? "No One"}  // ?. is null-conditional operator and ?? is null-coalesce operator
                                              };
             foreach (var supplierWithBuyerGroup in leftOuterJoinWithAnonymous)
             {
                 Console.WriteLine($"Supplier: {supplierWithBuyerGroup.Name} in District {supplierWithBuyerGroup.District}");
-                Console.WriteLine($" {supplierWithBuyerGroup.BuyerName}");
-               
+                foreach (var buyer in supplierWithBuyerGroup.Buyers)
+                {
+                    Console.WriteLine($"   Buyer: {buyer.BuyerName}");
+                }
+
             }
 
         }
