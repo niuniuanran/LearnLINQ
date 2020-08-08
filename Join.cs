@@ -72,7 +72,9 @@ namespace LearnLinq
                             {
                                 s.Name,
                                 s.District,
-                                Buyers = buyerGroup
+                                Buyers = from b in buyerGroup
+                                         orderby b.Age
+                                         select b
                             };
 
             foreach (var supplierWithBuyerGroup in groupJoin)
@@ -80,7 +82,7 @@ namespace LearnLinq
                 Console.WriteLine($"Supplier: {supplierWithBuyerGroup.Name} in District {supplierWithBuyerGroup.District}");
                 foreach (var buyer in supplierWithBuyerGroup.Buyers)
                 {
-                    Console.WriteLine($"   Buyer: {buyer.Name} ");
+                    Console.WriteLine($"   Buyer: {buyer.Name} Age: {buyer.Age}");
                 }
             }
         }
