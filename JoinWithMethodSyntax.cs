@@ -45,6 +45,27 @@ namespace LearnLinq
                 Console.WriteLine($"{match.District}, Aged {match.Age}: Supplier {match.SupplierName}, Buyer {match.BuyerName}");
             }
 
+            SeparatingLine("Group Join");
+
+            var groupJoinByDistrict = suppliers
+                .GroupJoin(buyers,
+                s => s.District,
+                b => b.District,
+                (s, buyerGroup) => new
+                {
+                    s.Name,
+                    s.District,
+                    Buyers = buyerGroup
+                });
+
+            foreach (var supplier in groupJoinByDistrict)
+            {
+                Console.WriteLine($"Supplier: {supplier.Name} in {supplier.District}");
+                foreach (var buyer in supplier.Buyers)
+                    Console.WriteLine($"   Buyer: {buyer.Name}");
+            }
+
+
 
         }
 
