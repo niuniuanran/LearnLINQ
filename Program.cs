@@ -87,7 +87,7 @@ namespace LearnLinq
             }
 
             SeparatingLine();
-            Console.WriteLine("Group then Order groups");
+            Console.WriteLine("1: Group then Order groups");
 
             var orderedKeys = from key in (from p in people group p by p.FirstName[0]) 
                               orderby key.Count()
@@ -118,6 +118,22 @@ namespace LearnLinq
                 }
             }
 
+            SeparatingLine();
+            Console.WriteLine("Redo alphabetic grouping in 1");
+
+            var newOrderedByCountKeys = from p in people
+                                        group p by p.FirstName[0] into groupByFirstLetter
+                                        orderby groupByFirstLetter.Key
+                                        select groupByFirstLetter;
+
+            foreach (var key in orderedKeys)
+            {
+                Console.WriteLine($"--Name starting with {key.Key} -- {key.Count()} people in the group--");
+                foreach (var p in key)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
+                }
+            }
 
         }
     }
