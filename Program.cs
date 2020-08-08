@@ -59,6 +59,9 @@ namespace LearnLinq
                 }
             }
 
+            SeparatingLine();
+            Console.WriteLine("Group into 25+ and 25- ");
+
             var ageGroup = from p in people
                            group p by (p.Age > 25);
             foreach (var group in ageGroup)
@@ -68,6 +71,37 @@ namespace LearnLinq
                     Console.WriteLine($"{p.FirstName} {p.Age}");
 
             }
+
+            SeparatingLine();
+            Console.WriteLine("Group by multiple keys");
+
+            var multipleKeys = from p in people
+                               group p by new { p.Gender, p.Age };
+            foreach (var key in multipleKeys)
+            {
+                Console.WriteLine($"--{key.Key}--");
+                foreach(var p in key.OrderBy(p=>p.Age))
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
+                }
+            }
+
+            SeparatingLine();
+            Console.WriteLine("Group then Order groups");
+
+            var orderedKeys = from key in (from p in people group p by p.FirstName[0]) 
+                              orderby key.Count()
+                              select key;
+            foreach (var key in orderedKeys)
+            {
+                Console.WriteLine($"--Name starting with {key.Key} -- {key.Count()} people in the group--");
+                foreach (var p in key.OrderBy(p => p.Age))
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
+                }
+            }
+
+
 
 
         }
