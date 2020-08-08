@@ -109,7 +109,10 @@ namespace LearnLinq
             int sum = integers.Aggregate((acc, i)=>acc+i);
             Console.WriteLine($"Sum: {sum}");
 
+            SeparatingLine("Aggeragation Operation - Aggregate, with a Seed");
 
+            int productTriple = integers.Aggregate(3, (acc, i) => acc * i);
+            Console.WriteLine($"product: {productTriple}");
         }
 
 
