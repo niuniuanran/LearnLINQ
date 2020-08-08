@@ -45,6 +45,15 @@ namespace FilterConvertOrder
             foreach (var item in youngBuyers)
                 Console.WriteLine($"Buyer {item.ID} aged {item.Age} ");
 
+
+            SeparatingLine("Method Syntax with filter by type and casting");
+
+            var youngBuyerMethodSyntax = people.OfType<Buyer>().Where(b => b.Age < 25);
+            foreach (var item in youngBuyerMethodSyntax)
+            {
+                Console.WriteLine($"Buyer {item.ID} aged {item.Age}");
+            }
+
         }
 
 
