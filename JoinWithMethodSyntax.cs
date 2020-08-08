@@ -65,7 +65,7 @@ namespace LearnLinq
                     Console.WriteLine($"   Buyer: {buyer.Name}");
             }
 
-            SeparatingLine("Left Outer join");
+            SeparatingLine("Left Outer join - Flattened with Anonymous type");
 
             var outerJoinByDistrict = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g })
                 .SelectMany(s => s.Buyers.DefaultIfEmpty(), (s, b) => new { s.Name, s.District, BuyerName = b?.Name ?? "No One"}); 
@@ -78,13 +78,15 @@ namespace LearnLinq
                 Console.WriteLine($"{match.District}, Supplier {match.Name}, Buyer {match.BuyerName}");
             }
 
+            SeparatingLine("Left Outer join - type specific");
 
-            SeparatingLine("Practice SelectMany");
-
-
-
-
-
+            var outerJoinWithBuyerType = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g.DefaultIfEmpty(new Buyer { Name = "No One" }) });
+            foreach (var supplier in outerJoinWithBuyerType)
+            {
+                Console.WriteLine($"Supplier: {supplier.Name} in {supplier.District}");
+                foreach (var buyer in supplier.Buyers)
+                    Console.WriteLine($"   Buyer: {buyer.Name}");
+            }
         }
 
         private static void SeparatingLine(string exp)
