@@ -7,7 +7,7 @@ namespace LearnLinq
 {
     class JoinQueries
     {
-        static void Main (String[] args)
+        static void MyMain (String[] args)
         {
             List<Buyer> buyers = new List<Buyer>()
             {
