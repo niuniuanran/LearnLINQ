@@ -26,6 +26,7 @@ namespace LearnLinq
 
             people.OrderBy(p => p.Gender).ThenBy(p => p.ID).ToList().ForEach(p => Console.WriteLine($"{p.FirstName}\t{p.ID} {p.Gender}"));
 
+            people.OrderBy(p => p.Gender).ThenByDescending(p => p.ID).ToList().ForEach(p => Console.WriteLine($"{p.FirstName}\t{p.ID} {p.Gender}"));
 
         }
     }
