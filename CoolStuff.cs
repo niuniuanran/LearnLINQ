@@ -39,11 +39,15 @@ namespace LearnLinq
 
             SeparatingLine("Set Operations Start here!");
 
-            SeparatingLine("Distinct Set Operation");
+            SeparatingLine("Set Operation - Distinct");
 
             string catSentence = "I am a cat!";
             catSentence.Distinct().ToList().ForEach(c=>Console.WriteLine(c));
 
+            SeparatingLine("Set Operation - Intersect");
+
+            string dogSentence = "I am a dog!";
+            catSentence.Intersect(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
 
 
         }
