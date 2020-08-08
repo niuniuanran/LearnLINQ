@@ -98,6 +98,14 @@ namespace LearnLinq
             SeparatingLine("Partitioning Operation - OrderByDescending then TakeWhile");
 
             ints.OrderByDescending(n=>n).TakeWhile(n=> n>5).ToList().ForEach(n => Console.WriteLine(n));
+
+
+
+            SeparatingLine("Concat method Start here!");
+            ints.Concat(numbers).ToList().ForEach(n => Console.WriteLine(n));
+
+
+
         }
 
 
