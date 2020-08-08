@@ -60,9 +60,21 @@ namespace FilterConvertOrder
                                select p).ToList().ToArray();
 
 
-            SeparatingLine("Convert type of element");
+            SeparatingLine("Convert type of item with Method Syntax");
 
             var buyersToSuppliers = people.OfType<Buyer>().ToList().ConvertAll(b => new Supplier { Age = b.Age });
+
+            SeparatingLine("Convert type of item with Query Syntax");
+
+            var buyersToSuppliersQuery = from p in people
+                                         where p is Buyer
+                                         let b = p as Buyer
+                                         select new Supplier
+                                         {
+                                             Age = b.Age
+                                         };
+
+
 
 
         }
