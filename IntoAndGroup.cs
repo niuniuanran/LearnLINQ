@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LearnLinq;
-namespace IntroAndGroup
+namespace LearnLinq
 {
-    class IntroAndGroup
+    public class IntroAndGroup
 
     {
         private static void SeparatingLine()
@@ -12,7 +11,7 @@ namespace IntroAndGroup
             Console.WriteLine(new string('=', 40));
         }
 
-        static void Main(string[] args)
+        public static void IntroAndGroupPractice(string[] args)
         {
             List<Person> people = new List<Person>()
             {
