@@ -52,6 +52,10 @@ namespace LearnLinq
             SeparatingLine("Set Operation - Union");
 
             catSentence.Union(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
+
+            SeparatingLine("Set Operation - Except");
+            catSentence.Except(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
+
         }
 
 
