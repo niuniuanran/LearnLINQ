@@ -5,6 +5,11 @@ namespace LearnLinq
 {
     class LearnLinq
     {
+        private static void SeparatingLine()
+        {
+            Console.WriteLine(new string('=', 40));
+        }
+
         static void Main(string[] args)
         {
             List<Person> people = new List<Person>()
@@ -34,6 +39,36 @@ namespace LearnLinq
             {
                 Console.WriteLine($"I am a young people. My name is {p.FullName} and I am {p.Age} years old.");
             }
+
+            SeparatingLine();
+            Console.WriteLine("Practicing Grouping");
+
+
+            var genderGroup = from p in people
+                              where p.FirstName.StartsWith("A")
+                              group p by p.Gender; // a linq query can end with either a group call or a select call. So here we don't need a select.
+
+            Console.WriteLine(genderGroup);
+
+            foreach(var group in genderGroup)
+            {
+                Console.WriteLine($"--- { group.Key} Group ---");
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender}");
+                }
+            }
+
+            var ageGroup = from p in people
+                           group p by (p.Age > 25);
+            foreach (var group in ageGroup)
+            {
+                Console.WriteLine($"-- People {(group.Key ? "above":"under")} 25 years old --- ");
+                foreach (var p in group)
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+
+            }
+
 
         }
     }
