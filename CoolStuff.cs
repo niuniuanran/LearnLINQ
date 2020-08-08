@@ -74,6 +74,17 @@ namespace LearnLinq
             Console.WriteLine(numbers.Contains(3));
 
 
+
+            SeparatingLine("Partitioning Operations Start here!");
+
+            int[] ints = { 1, 2, 3, 3, 4, 5, 6, 7, 7, 7, 9, 9, 10 };
+
+            SeparatingLine("Partitioning Operation - Skip");
+
+            ints.Skip(1).ToList().ForEach(n => Console.WriteLine(n));
+
+
+
         }
 
 
