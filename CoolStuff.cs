@@ -36,6 +36,16 @@ namespace LearnLinq
             Console.WriteLine(catnames.SequenceEqual(catnames2));
 
 
+
+            SeparatingLine("Set Operations Start here!");
+
+            SeparatingLine("Distinct Set Operation");
+
+            string catSentence = "I am a cat!";
+            catSentence.Distinct().ToList().ForEach(c=>Console.WriteLine(c));
+
+
+
         }
 
 
