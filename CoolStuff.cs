@@ -77,7 +77,7 @@ namespace LearnLinq
 
             SeparatingLine("Partitioning Operations Start here!");
 
-            int[] ints = { 1, 2, 3, 3, 4, 5, 6, 7, 7, 7, 9, 9, 10 };
+            int[] ints = { 1, 2, 3, 3, 7, 4, 5, 6, 7, 7, 7, 9, 9, 10 };
 
             SeparatingLine("Partitioning Operation - Skip");
 
@@ -95,6 +95,9 @@ namespace LearnLinq
 
             ints.TakeWhile(n => n < 5).ToList().ForEach(n => Console.WriteLine(n));
 
+            SeparatingLine("Partitioning Operation - OrderByDescending then TakeWhile");
+
+            ints.OrderByDescending(n=>n).TakeWhile(n=> n>5).ToList().ForEach(n => Console.WriteLine(n));
         }
 
 
