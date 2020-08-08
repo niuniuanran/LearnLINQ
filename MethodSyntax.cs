@@ -22,7 +22,6 @@ namespace LearnLinq
             };
 
             var shortWarriors = warriors.Where(w => w.Height < 100)
-                                        .Select(w => w)
                                         .ToList();
 
             shortWarriors.ForEach(w => Console.WriteLine(w.Height));
