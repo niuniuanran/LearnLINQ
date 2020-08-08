@@ -101,6 +101,14 @@ namespace LearnLinq
                 .ToList().ForEach(n => Console.WriteLine(n));
 
 
+            int[] integers = { 1, 2, 3, 4,5};
+
+            SeparatingLine("Aggeragation Operations Start here!");
+
+            SeparatingLine("Aggeragation Operation - Aggregate");
+            int sum = integers.Aggregate((acc, i)=>acc+i);
+            Console.WriteLine($"Sum: {sum}");
+
 
         }
 
