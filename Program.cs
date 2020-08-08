@@ -50,7 +50,7 @@ namespace LearnLinq
 
             Console.WriteLine(genderGroup);
 
-            foreach(var group in genderGroup)
+            foreach (var group in genderGroup)
             {
                 Console.WriteLine($"--- { group.Key} Group ---");
                 foreach (var p in group)
@@ -66,7 +66,7 @@ namespace LearnLinq
                            group p by (p.Age > 25);
             foreach (var group in ageGroup)
             {
-                Console.WriteLine($"-- People {(group.Key ? "above":"under")} 25 years old --- ");
+                Console.WriteLine($"-- People {(group.Key ? "above" : "under")} 25 years old --- ");
                 foreach (var p in group)
                     Console.WriteLine($"{p.FirstName} {p.Age}");
 
@@ -80,16 +80,16 @@ namespace LearnLinq
             foreach (var key in multipleKeys)
             {
                 Console.WriteLine($"--{key.Key}--");
-                foreach(var p in key.OrderBy(p=>p.Age))
+                foreach (var p in key.OrderBy(p => p.Age))
                 {
                     Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
                 }
             }
 
             SeparatingLine();
-            Console.WriteLine("1: Group then Order groups, will be rewritten by into keyword"); 
+            Console.WriteLine("1: Group then Order groups, will be rewritten by into keyword");
 
-            var orderedKeys = from key in (from p in people group p by p.FirstName[0]) 
+            var orderedKeys = from key in (from p in people group p by p.FirstName[0])
                               orderby key.Count()
                               select key;
             foreach (var key in orderedKeys)
@@ -118,6 +118,32 @@ namespace LearnLinq
                     Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
                 }
             }
+
+
+            SeparatingLine();
+            Console.WriteLine("Group people into three age groups");
+
+            var threeAgeGroupingKeys = from p in people
+                                       orderby p.Age
+                                       let ageGroupName = ((p.Age > 40)
+                                                             ? "senior"
+                                                             : p.Age < 25
+                                                                   ? "young"
+                                                                   : "middle")
+                                       group p by ageGroupName into grouped
+                                       select grouped;
+            foreach (var key in threeAgeGroupingKeys)
+            {
+                Console.WriteLine($"--Age Group {key.Key} -- {key.Count()} people in the age group--");
+                foreach (var p in key)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Gender} {p.Age}");
+                }
+            }
+
+
+
+
 
         }
     }
