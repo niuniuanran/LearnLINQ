@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace LearnLinq
+namespace FilterConvertOrder
 {
     class FilterConvertOrder
     {
@@ -16,7 +16,28 @@ namespace LearnLinq
             var charsInMix = mix.OfType<char>();
 
             Console.WriteLine(String.Join("", charsInMix));
+
+            List<Person> people = new List<Person>()
+            {
+                new Buyer() { Age = 20 , ID = 1, Height = 125, Weight = 77},
+                new Buyer() { Age = 25 , ID = 2, Height = 150, Weight = 88},
+                new Buyer() { Age = 20 , ID = 5, Height = 100, Weight = 58},
+                new Supplier() { Age = 22 },
+                new Supplier() { Age = 20 }
+            };
+
+            SeparatingLine("Use query syntax to filter type");
+
+            var buyers = from p in people
+                         where p is Buyer
+                         select p;
+            foreach (var item in buyers)
+                Console.WriteLine(item.GetType().ToString());
+
+
         }
+
+
 
         private static void SeparatingLine(string exp)
         {
@@ -24,5 +45,23 @@ namespace LearnLinq
             Console.WriteLine(exp);
         }
 
+    }
+
+    internal class Person
+    {
+
+    }
+
+    internal class Buyer : Person
+    {
+        public int Age { get; set; }
+        public int ID { get; set; }
+        public int Height { get; set; }
+        public int Weight { get; set; }
+    }
+
+    internal class Supplier : Person
+    {
+        public int Age { get; set; }
     }
 }
