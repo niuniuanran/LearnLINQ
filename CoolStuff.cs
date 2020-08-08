@@ -28,6 +28,21 @@ namespace LearnLinq
             var alphabet = Enumerable.Range(0, 26).Select(c => (char)(c + 'a'));
             Console.WriteLine(string.Join(" ", alphabet));
 
+
+            SeparatingLine("Check collections for equality");
+
+            string[] catnames = { "Lucy", "Loki" };
+            string[] catnames2 = { "Lucy", "Loki" };
+            Console.WriteLine(catnames.SequenceEqual(catnames2));
+
+
+        }
+
+
+        private static void SeparatingLine(string exp)
+        {
+            Console.WriteLine(new string('-', 40));
+            Console.WriteLine(exp);
         }
     }
 }
