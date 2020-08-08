@@ -7,7 +7,7 @@ namespace LearnLinq
 {
     class MethodSyntax
     {
-        static void Main(string[] args)
+        static void MyMain(string[] args)
         {
             
             List<Warrior> warriors = new List<Warrior>()
