@@ -68,12 +68,19 @@ namespace LearnLinq
             SeparatingLine("Left Outer join");
 
             var outerJoinByDistrict = suppliers.GroupJoin(buyers, s => s.District, b => b.District, (s, g) => new { s.Name, s.District, Buyers = g })
-                .SelectMany(s => s.Buyers.DefaultIfEmpty(), (s, b) => new { s.Name, s.District, BuyerName = b?.Name ?? "No One"});
+                .SelectMany(s => s.Buyers.DefaultIfEmpty(), (s, b) => new { s.Name, s.District, BuyerName = b?.Name ?? "No One"}); 
+            // SelectMany takes a collection selector, which is a function used to extract a collection from the original collection's item, 
+            // and a result selector, which is a function taking the original item and the items in the extracted collection and then generating a new result.
+            // SelectMany flattens nested collection (result of GroupJoin or Grouping) into a new collection.
 
             foreach (var match in outerJoinByDistrict)
             {
                 Console.WriteLine($"{match.District}, Supplier {match.Name}, Buyer {match.BuyerName}");
             }
+
+
+            SeparatingLine("Practice SelectMany");
+
 
 
 
