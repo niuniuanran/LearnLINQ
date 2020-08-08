@@ -22,12 +22,10 @@ namespace LearnLinq
             };
 
             var shortWarriors = warriors.Where(w => w.Height < 100)
-                                        .Select(w => w);
+                                        .Select(w => w)
+                                        .ToList();
 
-            foreach(Warrior w in shortWarriors)
-            {
-                Console.WriteLine(w.Height);
-            }
+            shortWarriors.ForEach(w => Console.WriteLine(w.Height));
 
 
         }
