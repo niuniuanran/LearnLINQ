@@ -94,6 +94,20 @@ namespace LearnLinq
                 }
             }
 
+
+            SeparatingLine("Age group");
+
+            var ageGroup = people.OrderBy(p => p.FirstName).GroupBy(p => p.Age > 35 ? "Senior" : (p.Age < 21 ? "Young" : "Adult")).OrderBy(group=> group.Key.Equals("Young")? 0: group.Key.Equals("Senior")? 2: 1);
+
+            foreach (var group in ageGroup)
+            {
+                Console.WriteLine("---"+group.Key+ "---");
+                foreach (var p in group)
+                {
+                    Console.WriteLine($"{p.FirstName} {p.Age}");
+                }
+            }
+
         }
 
         private static void SeparatingLine(string exp)
