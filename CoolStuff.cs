@@ -8,7 +8,7 @@ namespace LearnLinq
 {
     class CoolStuff
     {
-        static void Main (string[] args)
+        static void Main(string[] args)
         {
             var manyAs = Enumerable.Repeat("A", 30);
             Console.WriteLine(string.Join("", manyAs));
@@ -42,7 +42,7 @@ namespace LearnLinq
             SeparatingLine("Set Operation - Distinct");
 
             string catSentence = "I am a cat!";
-            catSentence.Distinct().ToList().ForEach(c=>Console.WriteLine(c));
+            catSentence.Distinct().ToList().ForEach(c => Console.WriteLine(c));
 
             SeparatingLine("Set Operation - Intersect");
 
@@ -83,7 +83,17 @@ namespace LearnLinq
 
             ints.Skip(1).ToList().ForEach(n => Console.WriteLine(n));
 
+            SeparatingLine("Partitioning Operation - Take");
 
+            ints.Take(3).ToList().ForEach(n => Console.WriteLine(n));
+
+            SeparatingLine("Partitioning Operation - SkipWhile");
+
+            ints.SkipWhile(n => n < 5).ToList().ForEach(n => Console.WriteLine(n));
+
+            SeparatingLine("Partitioning Operation - TakeWhile");
+
+            ints.TakeWhile(n => n < 5).ToList().ForEach(n => Console.WriteLine(n));
 
         }
 
