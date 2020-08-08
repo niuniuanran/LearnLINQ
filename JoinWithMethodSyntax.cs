@@ -7,7 +7,7 @@ namespace LearnLinq
 {
     class JoinWithMethodSyntax
     {
-        static void Main(string[] args)
+        static void MyMain(string[] args)
         {
 
             List<Buyer> buyers = new List<Buyer>()
