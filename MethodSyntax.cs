@@ -108,6 +108,15 @@ namespace LearnLinq
                 }
             }
 
+            SeparatingLine("Count Gender group");
+
+            var genderGroupCount = people.GroupBy(p => p.Gender).Select(group => new { Gender=group.Key, Number = group.Count()});
+
+            foreach(var group in genderGroupCount)
+            {
+                Console.WriteLine($"There are {group.Number} people that are {group.Gender}");
+            }
+
         }
 
         private static void SeparatingLine(string exp)
