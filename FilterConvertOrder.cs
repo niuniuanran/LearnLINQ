@@ -54,9 +54,18 @@ namespace FilterConvertOrder
                 Console.WriteLine($"Buyer {item.ID} aged {item.Age}");
             }
 
+            SeparatingLine("Convert resulting collection to Array or List");
+
+            var peopleArray = (from p in people
+                               select p).ToList().ToArray();
+
+
+            SeparatingLine("Convert type of element");
+
+            var buyersToSuppliers = people.OfType<Buyer>().ToList().ConvertAll(b => new Supplier { Age = b.Age });
+
+
         }
-
-
 
         private static void SeparatingLine(string exp)
         {
