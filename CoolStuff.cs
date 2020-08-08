@@ -49,7 +49,9 @@ namespace LearnLinq
             string dogSentence = "I am a dog!";
             catSentence.Intersect(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
 
+            SeparatingLine("Set Operation - Union");
 
+            catSentence.Union(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
         }
 
 
