@@ -60,17 +60,13 @@ namespace LearnLinq
             SeparatingLine("Quantifying Operations Start here!");
 
             SeparatingLine("Quantifying Operation - All");
-
             Console.WriteLine(numbers.All(n => n < 10));
 
             SeparatingLine("Quantifying Operation - Any");
-
             Console.WriteLine(numbers.Any(n => n > 10));
-
             Console.WriteLine(string.Empty.Any()); // Check if there is any element in the collection
 
             SeparatingLine("Quantifying Operation - Contains");
-
             Console.WriteLine(numbers.Contains(3));
 
 
@@ -80,29 +76,29 @@ namespace LearnLinq
             int[] ints = { 1, 2, 3, 3, 7, 4, 5, 6, 7, 7, 7, 9, 9, 10 };
 
             SeparatingLine("Partitioning Operation - Skip");
-
             ints.Skip(1).ToList().ForEach(n => Console.WriteLine(n));
 
             SeparatingLine("Partitioning Operation - Take");
-
             ints.Take(3).ToList().ForEach(n => Console.WriteLine(n));
 
             SeparatingLine("Partitioning Operation - SkipWhile");
-
             ints.SkipWhile(n => n < 5).ToList().ForEach(n => Console.WriteLine(n));
 
             SeparatingLine("Partitioning Operation - TakeWhile");
-
             ints.TakeWhile(n => n < 5).ToList().ForEach(n => Console.WriteLine(n));
 
             SeparatingLine("Partitioning Operation - OrderByDescending then TakeWhile");
-
             ints.OrderByDescending(n=>n).TakeWhile(n=> n>5).ToList().ForEach(n => Console.WriteLine(n));
 
 
 
             SeparatingLine("Concat method Start here!");
             ints.Concat(numbers).ToList().ForEach(n => Console.WriteLine(n));
+
+            SeparatingLine("Powerful Concat");
+            ints.Take(ints.Length / 2)
+                .Concat(ints.Skip(ints.Length / 2).Select(n=>n*n))
+                .ToList().ForEach(n => Console.WriteLine(n));
 
 
 
