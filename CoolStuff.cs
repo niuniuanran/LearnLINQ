@@ -56,6 +56,24 @@ namespace LearnLinq
             SeparatingLine("Set Operation - Except");
             catSentence.Except(dogSentence).ToList().ForEach(c => Console.WriteLine(c));
 
+
+            SeparatingLine("Quantifying Operations Start here!");
+
+            SeparatingLine("Quantifying Operation - All");
+
+            Console.WriteLine(numbers.All(n => n < 10));
+
+            SeparatingLine("Quantifying Operation - Any");
+
+            Console.WriteLine(numbers.Any(n => n > 10));
+
+            Console.WriteLine(string.Empty.Any()); // Check if there is any element in the collection
+
+            SeparatingLine("Quantifying Operation - Contains");
+
+            Console.WriteLine(numbers.Contains(3));
+
+
         }
 
 
